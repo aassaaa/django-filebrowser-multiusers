@@ -1,0 +1,5 @@
+# -*- coding: utf8 -*-
+from settings import STATIC_URL
+
+FILEBROWSER_URL_FILEBROWSER_MEDIA = STATIC_URL + 'filebrowser/'
+FILEBROWSER_DIRECTORY = 'upload/'
