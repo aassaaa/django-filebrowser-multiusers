@@ -144,11 +144,25 @@ def url_join(*args):
         url = url.rstrip("/")
     return url
 
+def mkuserdir(user_id):
+    userdir = MULTI_USERS_MASK %user_id
+    abs_path = os.path.join(MEDIA_ROOT, DIRECTORY, userdir)
 
-def get_path(path):
+    if not os.path.exists(abs_path):
+        os.makedirs(abs_path)
+    return userdir
+
+def get_path(request,path):
     """
     Get Path.
     """
+    if MULTI_USERS: # and not path: #and request.user.is_superuser:
+        userdir = mkuserdir(request.user.pk)
+        if path:
+            if not path.startswith(userdir):
+                return None
+        else:
+            path = userdir
     
     if path.startswith('.') or os.path.isabs(path) or not os.path.isdir(os.path.join(MEDIA_ROOT, DIRECTORY, path)):
         return None
@@ -370,5 +384,3 @@ def convert_filename(value):
         return value.replace(" ", "_").lower()
     else:
         return value
-
-

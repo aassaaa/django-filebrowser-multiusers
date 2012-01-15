@@ -46,11 +46,11 @@ def browse(request):
     """
     Browse Files/Directories.
     """
-    
+
     # QUERY / PATH CHECK
     query = request.GET.copy()
-    path = get_path(query.get('dir', ''))
-    directory = get_path('')
+    path = get_path(request,query.get('dir', ''))
+    directory = get_path(request, '')
     
     if path is None:
         msg = _('The requested Folder does not exist.')
@@ -161,7 +161,7 @@ def mkdir(request):
     
     # QUERY / PATH CHECK
     query = request.GET
-    path = get_path(query.get('dir', ''))
+    path = get_path(request,query.get('dir', ''))
     if path is None:
         msg = _('The requested Folder does not exist.')
         request.user.message_set.create(message=msg)
@@ -220,7 +220,7 @@ def upload(request):
     
     # QUERY / PATH CHECK
     query = request.GET
-    path = get_path(query.get('dir', ''))
+    path = get_path(request, query.get('dir', ''))
     if path is None:
         msg = _('The requested Folder does not exist.')
         request.user.message_set.create(message=msg)
@@ -287,7 +287,7 @@ def delete(request):
     
     # QUERY / PATH CHECK
     query = request.GET
-    path = get_path(query.get('dir', ''))
+    path = get_path(request, query.get('dir', ''))
     filename = get_file(query.get('dir', ''), query.get('filename', ''))
     if path is None or filename is None:
         if path is None:
@@ -369,7 +369,7 @@ def rename(request):
     
     # QUERY / PATH CHECK
     query = request.GET
-    path = get_path(query.get('dir', ''))
+    path = get_path(request, query.get('dir', ''))
     filename = get_file(query.get('dir', ''), query.get('filename', ''))
     if path is None or filename is None:
         if path is None:
@@ -430,7 +430,7 @@ def versions(request):
     
     # QUERY / PATH CHECK
     query = request.GET
-    path = get_path(query.get('dir', ''))
+    path = get_path(request, query.get('dir', ''))
     filename = get_file(query.get('dir', ''), query.get('filename', ''))
     if path is None or filename is None:
         if path is None:
@@ -450,5 +450,3 @@ def versions(request):
         'breadcrumbs_title': _(u'Versions for "%s"') % filename
     }, context_instance=Context(request))
 versions = staff_member_required(never_cache(versions))
-
-

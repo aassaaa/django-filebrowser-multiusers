@@ -1,5 +1,9 @@
-# -*- coding: utf8 -*-
-from settings import STATIC_URL
++ no-grappelli
++ no-uploadify
++ multi-users
 
+
+Options:
 FILEBROWSER_URL_FILEBROWSER_MEDIA = STATIC_URL + 'filebrowser/'
 FILEBROWSER_DIRECTORY = 'upload/'
+FILEBROWSER_MULTI_USERS = True
