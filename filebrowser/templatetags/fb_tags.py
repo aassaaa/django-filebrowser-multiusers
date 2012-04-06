@@ -2,8 +2,7 @@
 
 # django imports
 from django import template
-from django.utils.encoding import smart_unicode
-from django.utils.http import urlencode
+from django.utils.http import urlquote
 
 
 # filebrowser imports
@@ -61,7 +60,7 @@ def get_query_string(p, new_params=None, remove=None):
             del p[k]
         elif v is not None:
             p[k] = v
-    return "?" + urlencode(p)
+    return '?' + '&'.join([u'%s=%s' % (urlquote(k), urlquote(v)) for k, v in p.items()])
 
 
 
@@ -152,5 +151,5 @@ def custom_admin_media_prefix():
             from django.contrib.admin.templatetags import admin_media_prefix
         except ImportError:
             from django.contrib.admin.templatetags.adminmedia import admin_media_prefix
-        return admin_media_prefix()
+        return admin_media_prefix
 

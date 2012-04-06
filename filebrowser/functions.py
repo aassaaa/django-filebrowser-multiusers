@@ -144,6 +144,7 @@ def url_join(*args):
         url = url.rstrip("/")
     return url
 
+
 def mkuserdir(user_id):
     userdir = MULTI_USERS_MASK %user_id
     abs_path = os.path.join(MEDIA_ROOT, DIRECTORY, userdir)
@@ -384,3 +385,5 @@ def convert_filename(value):
         return value.replace(" ", "_").lower()
     else:
         return value
+
+
