@@ -6,7 +6,7 @@
 <!-- STYLESHEETS -->
 {% block extrastyle %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />
+    <link rel="stylesheet" type="text/css" href="{% custom_admin_media_prefix %}css/forms.css" />
     <link rel="stylesheet" type="text/css" href="{{ settings_var.URL_FILEBROWSER_MEDIA }}css/filebrowser.css" />
 {% endblock %}
 
@@ -14,8 +14,8 @@
 {% block extrahead %}
     {{ block.super }}
     <script type="text/javascript" src="../../jsi18n/"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}js/core.js"></script>
-    <script type="text/javascript" src="{% admin_media_prefix %}js/admin/CollapsedFieldsets.js"></script>
+    <script type="text/javascript" src="{% custom_admin_media_prefix %}js/core.js"></script>
+    <script type="text/javascript" src="{% custom_admin_media_prefix %}js/admin/CollapsedFieldsets.js"></script>
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->
